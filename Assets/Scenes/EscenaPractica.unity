@@ -5939,11 +5939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7231784427e084f8aa9ad3321b4758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 22198149}
-  playerCam: {fileID: 663549996}
-  throwForce: 200
-  chargeBar: {fileID: 0}
-  instructionsText: {fileID: 0}
 --- !u!65 &1007013781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7106,9 +7101,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Click derecho para sostener el objeto
-
-    E para guardar en el inventario'
+  m_text: Q para agarrar el objeto, Manten clic  izquierdo para lanzar, clic derecho
+    para soltar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10858,7 +10852,7 @@ GameObject:
   - component: {fileID: 2139125749}
   - component: {fileID: 2139125748}
   - component: {fileID: 2139125747}
-  - component: {fileID: 2139125746}
+  - component: {fileID: 2139125752}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -10866,23 +10860,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2139125746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139125745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7231784427e084f8aa9ad3321b4758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 22198149}
-  playerCam: {fileID: 663549996}
-  throwForce: 200
-  chargeBar: {fileID: 1713580121}
-  instructionsText: {fileID: 1260542162}
 --- !u!54 &2139125747
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10996,6 +10973,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139125752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139125745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b5ce055e1a02a4296188190590d231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 22198149}
+  playerCam: {fileID: 663549996}
+  throwForce: 10
+  dmg: 0
+  chargeBar: {fileID: 1713580121}
+  instructionsText: {fileID: 1260542162}
 --- !u!1001 &2139284357
 PrefabInstance:
   m_ObjectHideFlags: 0
