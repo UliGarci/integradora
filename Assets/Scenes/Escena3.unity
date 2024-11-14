@@ -25636,7 +25636,7 @@ PrefabInstance:
     - target: {fileID: 6440531783392874852, guid: 00421d8f4a3ea874a9b896d2cbc4f42d,
         type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Base_Roof_Cap_End_01
+      value: techo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31002,6 +31002,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1145501089}
     m_Modifications:
+    - target: {fileID: 5278494333971083065, guid: d686dea753da96b408f7a63fa3b23513,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f7783be9ec95fe4898c61a3f1617649, type: 2}
     - target: {fileID: 5926744606416670444, guid: d686dea753da96b408f7a63fa3b23513,
         type: 3}
       propertyPath: m_Name
