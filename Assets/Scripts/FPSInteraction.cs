@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FPSInteraction : MonoBehaviour{
-	public float maxDistance = 5f; // Máxima distancia para interactuar
+public class FPSInteraction : MonoBehaviour
+{
+    public float maxDistance = 5f; // Máxima distancia para interactuar
     public Transform holdPoint; // Punto donde se sostiene el objeto
     public TMP_Text instructionText; // Texto de instrucciones
     private Rigidbody heldObjectRB; // Referencia al objeto que se sostiene
     private Inventory inventory; // Referencia al inventario del jugador
+    private bool firstInteraction = false;
+
+    private bool isThrowing = false; // Variable para evitar volver a sostener después de lanzar
+    public float throwForce = 500f; // Fuerza de lanzamiento
 
     void Start()
     {
@@ -21,10 +26,11 @@ public class FPSInteraction : MonoBehaviour{
     {
         CheckForObject();
 
-        // Soltar el objeto si se deja de presionar clic derecho
-        if (Input.GetMouseButtonUp(1) && heldObjectRB != null)
+        // Lanzar el objeto si se presiona el clic derecho
+        if (Input.GetMouseButtonDown(1) && heldObjectRB != null)
         {
-            ReleaseObject();
+            ThrowObject();
+            return; // Evitar cualquier acción posterior en este frame
         }
 
         // Usar objetos del inventario con las teclas 1-5
@@ -34,6 +40,21 @@ public class FPSInteraction : MonoBehaviour{
             {
                 inventory.UseItem(i);
             }
+        }
+
+        // Agarrar y soltar el objeto con clic izquierdo
+        if (Input.GetMouseButtonDown(0) && heldObjectRB == null && !isThrowing)
+        {
+            CheckForObject(); // Verifica si se puede agarrar un objeto cuando se hace clic izquierdo
+        }
+        if (Input.GetMouseButton(0) && heldObjectRB != null) // Mantener el objeto agarrado mientras se mantenga clic izquierdo
+        {
+            // Mantener el objeto en la posición del punto de agarre
+            heldObjectRB.transform.position = holdPoint.position;
+        }
+        if (Input.GetMouseButtonUp(0) && heldObjectRB != null) // Liberar el objeto cuando se suelta clic izquierdo
+        {
+            ReleaseObject();
         }
     }
 
@@ -46,20 +67,14 @@ public class FPSInteraction : MonoBehaviour{
         {
             if (hit.collider.CompareTag("Interactable"))
             {
-                instructionText.text = "Right-click to pick up, E to store"; // Mostrar instrucciones
-                instructionText.gameObject.SetActive(true);
-
-                // Mantener el objeto agarrado si se mantiene clic derecho
-                if (Input.GetMouseButton(1))
+                if (!firstInteraction)
                 {
-                    HoldItem(hit.collider.gameObject);
+                    instructionText.text = "Clic izquierdo para sostener, E para almacenar, clic derecho para lanzar"; // Mostrar instrucciones
+                    instructionText.gameObject.SetActive(true);
                 }
 
-                // Almacenar el objeto en el inventario con "E"
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    inventory.AddItem(hit.collider.gameObject);
-                }
+                // Agarrar el objeto si no se sostiene uno ya
+                HoldItem(hit.collider.gameObject);
             }
         }
         else
@@ -73,11 +88,17 @@ public class FPSInteraction : MonoBehaviour{
         if (heldObjectRB == null) // Solo agarrar si no hay otro objeto sostenido
         {
             heldObjectRB = item.GetComponent<Rigidbody>();
+            if (heldObjectRB == null)
+            {
+                Debug.LogWarning("El objeto no tiene un componente Rigidbody.");
+                return;
+            }
             heldObjectRB.useGravity = false;
             heldObjectRB.drag = 10f;
             item.transform.position = holdPoint.position;
             item.transform.rotation = holdPoint.rotation;
             item.transform.parent = holdPoint;
+            firstInteraction = true;
         }
     }
 
@@ -90,5 +111,21 @@ public class FPSInteraction : MonoBehaviour{
             heldObjectRB.transform.parent = null;
             heldObjectRB = null; // Liberar la referencia
         }
+    }
+
+    void ThrowObject()
+    {
+        if (heldObjectRB != null) // Asegurarse de que hay un objeto sostenido
+        {
+            ReleaseObject(); // Liberar el objeto antes de lanzar
+            heldObjectRB.AddForce(Camera.main.transform.forward * throwForce); // Aplicar la fuerza de lanzamiento
+            isThrowing = true; // Activar el bloqueo temporal para evitar agarrar de nuevo
+            Invoke("ResetThrowing", 0.2f); // Desactivar el bloqueo después de un corto tiempo
+        }
+    }
+
+    void ResetThrowing()
+    {
+        isThrowing = false; // Desactivar el bloqueo temporal para poder agarrar de nuevo
     }
 }
