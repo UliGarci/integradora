@@ -1,8 +1,10 @@
+using StarterAssets;
 using UnityEngine;
 
 public class Trampoline : MonoBehaviour
 {
     public float jumpForce = 10f; // Fuerza hacia arriba
+    private float originalJump = 0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,21 +14,15 @@ public class Trampoline : MonoBehaviour
         // Comprobar si el objeto colisionado tiene la etiqueta "Player"
         if (other.gameObject.CompareTag("Player"))
         {
-            // Obtener el Rigidbody del objeto padre (jugador)
-            Rigidbody rb = other.gameObject.GetComponentInParent<Rigidbody>();
+            originalJump = other.GetComponentInParent<FirstPersonController>().JumpHeight;
+            Debug.Log("Entra el juegador");
+            Debug.Log(other.transform.parent.name);
+            other.GetComponentInParent<FirstPersonController>().JumpHeight = jumpForce;
+            other.GetComponentInParent<FirstPersonController>().trampolin = true;
+            other.GetComponentInParent<FirstPersonController>().JumpAndGravity();
+            other.GetComponentInParent<FirstPersonController>().trampolin = false;
+            other.GetComponentInParent<FirstPersonController>().JumpHeight = originalJump;
 
-            if (rb != null)
-            {
-                // Debug para confirmar que se aplica la fuerza
-                Debug.Log("Se aplica fuerza hacia arriba");
-
-                // Aplicar una fuerza hacia arriba
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
-            else
-            {
-                Debug.LogError("El jugador no tiene un Rigidbody.");
-            }
         }
         else
         {
