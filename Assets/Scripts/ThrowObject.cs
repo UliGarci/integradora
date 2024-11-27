@@ -16,24 +16,31 @@ public class ThrowObject : MonoBehaviour
     private float minThrowForce = 200f;
     private float maxThrowForce = 2000f;
 
-    public Image chargeImage; // Usa una imagen en lugar de Scrollbar
+    public Image chargeImage;
     public TextMeshProUGUI instructionsText;
 
     private bool hasSeenInstructions = false;
-    private float maxChargeWidth = 100f; // Ancho máximo de la barra de carga
+    private float maxChargeWidth = 100f;
+    private Renderer objectRenderer;
 
     void Start()
     {
         chargeImage.gameObject.SetActive(false);
-        chargeImage.rectTransform.sizeDelta = new Vector2(0f, chargeImage.rectTransform.sizeDelta.y); // Inicia en 0 de ancho
+        chargeImage.rectTransform.sizeDelta = new Vector2(0f, chargeImage.rectTransform.sizeDelta.y);
         instructionsText.gameObject.SetActive(false);
+
+        objectRenderer = GetComponent<Renderer>();
+        if (objectRenderer == null) 
+        {
+            Debug.LogError("El objeto necesita un componente Render para la detección de la visibilidad");
+        }
     }
 
     void Update()
     {
         float dist = Vector3.Distance(gameObject.transform.position, player.position);
 
-        if (dist <= 2.5f && !hasSeenInstructions)
+        if (dist <= 2.5f && !hasSeenInstructions && objectRenderer.isVisible && IsObjectInFront())
         {
             instructionsText.gameObject.SetActive(true);
         }
@@ -42,10 +49,11 @@ public class ThrowObject : MonoBehaviour
             instructionsText.gameObject.SetActive(false);
         }
 
-        if (dist <= 2.5f && Input.GetKeyDown(KeyCode.Q))
+        if (dist <= 2.5f && objectRenderer.isVisible && Input.GetKeyDown(KeyCode.Q) && IsObjectInFront())
         {
             GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = playerCam;
+            transform.localPosition = new Vector3(0f, 0f, 1.5f);
             beingCarried = true;
             chargeImage.gameObject.SetActive(true);
 
@@ -110,5 +118,17 @@ public class ThrowObject : MonoBehaviour
         {
             touched = true;
         }
+    }
+
+    private bool IsObjectInFront()
+    {
+        Ray ray = new Ray(playerCam.position, playerCam.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 2.5f))
+        {
+            return hit.transform == this.transform;
+        }
+        return false;
     }
 }

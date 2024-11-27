@@ -17,8 +17,13 @@ TagManager:
   - 
   - 
   - 
+<<<<<<< Updated upstream
   - Player
   - Globos
+=======
+  - Puerta
+  - InteractableObject
+>>>>>>> Stashed changes
   - 
   - 
   - 

@@ -9,8 +9,8 @@ public class InventorySystem : MonoBehaviour
 	public Image[] slots;
 	public TMP_Text itemMessage;
 
-	private string[] items = new string[9];
-	private Sprite[] itemIcons = new Sprite[9];
+	private string[] items = new string[4];
+	private Sprite[] itemIcons = new Sprite[4];
 	private int selectedSlot = 0;
 
 	private float messageTimer = 0f;
@@ -47,7 +47,7 @@ public class InventorySystem : MonoBehaviour
 	{
 		int previousSlot = selectedSlot;
 
-		for(int i = 0; i < 9; i++)
+		for(int i = 0; i < 4; i++)
 		{
 			if(Input.GetKeyDown((i + 1).ToString()))
 			{
@@ -59,11 +59,11 @@ public class InventorySystem : MonoBehaviour
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		if(scroll > 0f)
 		{
-			selectedSlot = (selectedSlot - 1 + 9) % 9;
+			selectedSlot = (selectedSlot - 1 + 4) % 4;
 		}
 		else if(scroll < 0f)
 		{
-			selectedSlot = (selectedSlot + 1) % 9;
+			selectedSlot = (selectedSlot + 1) % 4;
 		}
 
 		if(previousSlot != selectedSlot)
