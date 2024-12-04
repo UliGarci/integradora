@@ -2347,7 +2347,7 @@ PrefabInstance:
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.25
+      value: 70.04
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
@@ -2357,7 +2357,7 @@ PrefabInstance:
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.88
+      value: 86.33
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81,
         type: 3}
@@ -3500,7 +3500,7 @@ PrefabInstance:
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.25
+      value: 70.04
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
@@ -3510,7 +3510,7 @@ PrefabInstance:
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.88
+      value: 86.33
       objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
@@ -8745,7 +8745,7 @@ PrefabInstance:
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.25
+      value: 70.04
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
@@ -8755,7 +8755,7 @@ PrefabInstance:
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.88
+      value: 86.33
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
@@ -11789,7 +11789,7 @@ PrefabInstance:
     - target: {fileID: 6661533443968481222, guid: a28b8d60c1dd0044a9554f1ad2b3bf3f,
         type: 3}
       propertyPath: m_Name
-      value: piso8 (17)
+      value: piso_activador
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12489,7 +12489,7 @@ PrefabInstance:
     - target: {fileID: 5517501024539597447, guid: 91c85b7bf2cd12e439e4ba58400765cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.543
+      value: 2.028
       objectReference: {fileID: 0}
     - target: {fileID: 5517501024539597447, guid: 91c85b7bf2cd12e439e4ba58400765cc,
         type: 3}
@@ -12499,7 +12499,7 @@ PrefabInstance:
     - target: {fileID: 5517501024539597447, guid: 91c85b7bf2cd12e439e4ba58400765cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.178
+      value: -17.537
       objectReference: {fileID: 0}
     - target: {fileID: 5517501024539597447, guid: 91c85b7bf2cd12e439e4ba58400765cc,
         type: 3}
@@ -17032,7 +17032,7 @@ GameObject:
   - component: {fileID: 910956512}
   - component: {fileID: 910956511}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: txt_juego1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28734,6 +28734,7 @@ GameObject:
   - component: {fileID: 1571203141}
   - component: {fileID: 1571203140}
   - component: {fileID: 1571203139}
+  - component: {fileID: 1571203142}
   m_Layer: 0
   m_Name: activador_mensaje_juego
   m_TagString: Untagged
@@ -28750,8 +28751,8 @@ Transform:
   m_GameObject: {fileID: 1571203137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.2266, y: -0.613, z: -7.2694}
-  m_LocalScale: {x: 4.549779, y: 1, z: 4.3403673}
+  m_LocalPosition: {x: 8.984, y: -0.148, z: -6.154}
+  m_LocalScale: {x: 4.549779, y: 0.11655, z: 1.5584089}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2019328481}
@@ -28827,6 +28828,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571203137}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1571203142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571203137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0648978e5a330ae478cf7011838b4e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activadorname: activador_mensaje_juego
+  canvas: {fileID: 910956509}
 --- !u!1001 &1574901019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33722,7 +33737,7 @@ PrefabInstance:
     - target: {fileID: 6661533443968481222, guid: a28b8d60c1dd0044a9554f1ad2b3bf3f,
         type: 3}
       propertyPath: m_Name
-      value: piso8 (16)
+      value: piso_activador
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34175,7 +34190,7 @@ PrefabInstance:
     - target: {fileID: 3422626146783914763, guid: 83e8b2f410eb9c649abe716cbb1ebdb7,
         type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Base_Wall_Window_01
+      value: pared_bloqueo
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1926491890, guid: 83e8b2f410eb9c649abe716cbb1ebdb7, type: 3}

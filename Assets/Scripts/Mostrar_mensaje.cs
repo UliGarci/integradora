@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Mostrar_mensaje : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string activadorname;
+    public GameObject canvas;
+
+    private void Start()
     {
-        
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            if (canvas != null)
+            {
+                canvas.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (canvas != null)
+            {
+                canvas.SetActive(false);
+            }
+        }
     }
 }
